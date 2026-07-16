@@ -1,0 +1,225 @@
+:root {
+  --bg: #0a0f0c;
+  --surface: #101613;
+  --text: #d8e5dc;
+  --text-dim: #8ba394;
+  --accent: #4ade80;
+  --border: #1e2a23;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* ---------- ASCII video ---------- */
+
+.ascii-video {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.ascii-video canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Kept rendered (not display:none) so the browser keeps decoding frames. */
+.ascii-video__source {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Opaque backing keeps these readable no matter what the canvas draws. */
+.ascii-video__controls button,
+.hero__toggle {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.5rem;
+}
+
+.ascii-video__controls {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ascii-video__controls button,
+.hero__toggle {
+  font-family: var(--font-mono);
+  cursor: pointer;
+}
+
+.ascii-video__controls button:hover,
+.hero__toggle:hover {
+  color: var(--accent);
+}
+
+.ascii-video__controls button:focus-visible,
+.hero__toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ascii-video__controls button[aria-pressed='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero__panel {
+  position: relative;
+  max-width: 42rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Chip look shared with the ascii-video controls (see selectors above);
+   locked flush into the intro box's top-right corner, its border lines
+   sitting on the frame. */
+.hero__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.hero__content {
+  padding: 2rem;
+  background: rgba(10, 15, 12, 0.9); /* --bg at 90% — color-mix() lacks a clean fallback */
+  border: 1px solid var(--border);
+}
+
+.hero__panel--hidden .hero__content {
+  visibility: hidden;
+}
+
+.hero__kicker {
+  color: var(--text-dim);
+}
+
+.hero__name {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.hero__title {
+  color: var(--accent);
+  margin-top: 0.5rem;
+}
+
+.hero__tagline {
+  color: var(--text-dim);
+  margin-top: 1rem;
+}
+
+.hero__links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Experience ---------- */
+
+main {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: 4rem 2rem;
+}
+
+.experience h2 {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.experience h2 span {
+  color: var(--text-dim);
+}
+
+.experience__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.job {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1.5rem;
+}
+
+.job__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+}
+
+.job__header h3 {
+  font-size: 1rem;
+}
+
+.job__period {
+  color: var(--text-dim);
+  font-size: 0.875rem;
+}
+
+.job__team {
+  color: var(--accent);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.job__bullets {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  color: var(--text-dim);
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: 0 2rem 3rem;
+  color: var(--text-dim);
+  font-size: 0.875rem;
+}
