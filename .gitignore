@@ -3,6 +3,4 @@ dist/
 .DS_Store
 *.local
 
-# Local-only background video (copyrighted content — don't publish; deploys
-# need this file uploaded separately if you want the video background live)
-public/ascii-source.mp4
+
