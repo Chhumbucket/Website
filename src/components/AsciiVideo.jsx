@@ -136,18 +136,28 @@ export default function AsciiVideo({
     let lastMediaTime = -1
     let lastAdvanceAt = 0
 
-    // Watchdog: Chrome can silently stall an invisible video's clock near the
-    // loop boundary (it reports playing, fires no pause/ended event, and
-    // never wraps). If the clock stops advancing while it should be playing,
-    // restart from the top.
+    // Chrome doesn't reliably loop an offscreen video (ours is 1x1 /
+    // opacity:0). At the native loop boundary it wraps the clock to 0 but then
+    // discards the decoded frames and stops fetching — the element sits at
+    // readyState HAVE_METADATA / networkState IDLE, paused=false, ended=false,
+    // and never resumes. A seek or play() can't restart it because nothing is
+    // re-fetching; only load() re-primes the media pipeline.
+    //
+    // Watchdog: while the video should be playing, if its clock stops
+    // advancing and the network has gone idle (the stall signature above),
+    // reload and play from the top. The NETWORK_IDLE gate keeps us from
+    // interrupting a real buffering pause, where recovery isn't ours to force.
     const checkStall = (now) => {
-      if (!video || video.paused || video.readyState < 2) return
+      if (!video || video.paused) return
       if (video.currentTime !== lastMediaTime) {
         lastMediaTime = video.currentTime
         lastAdvanceAt = now
-      } else if (now - lastAdvanceAt > 2000) {
+      } else if (
+        now - lastAdvanceAt > 500 &&
+        video.networkState === HTMLMediaElement.NETWORK_IDLE
+      ) {
         lastAdvanceAt = now
-        video.currentTime = 0
+        video.load()
         video.play().catch(() => {})
       }
     }
