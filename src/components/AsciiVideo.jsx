@@ -51,13 +51,19 @@ export default function AsciiVideo({
     let samplingFailed = false
     let videoDirty = true
 
-    const videoReady = () =>
+    // A decoded frame is available to sample. Stays true for a *paused* video
+    // that already has a current frame — which is what lets the pause button
+    // freeze on that frame instead of dropping to plasma.
+    const hasVideoFrame = () =>
       video &&
       !video.error &&
-      !video.paused &&
       !samplingFailed &&
       video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA &&
       video.videoWidth > 0
+
+    // During the animation loop we only sample while the video is actively
+    // playing; a not-yet-playing (autoplay-blocked) video yields to plasma.
+    const videoReady = () => hasVideoFrame() && !video.paused
 
     const sampleVideo = () => {
       // Center-crop the video to the grid's aspect ratio, like object-fit: cover.
@@ -78,8 +84,10 @@ export default function AsciiVideo({
       }
     }
 
-    const drawFrame = (t) => {
-      const pixels = videoReady() ? sampleVideo() : null
+    // `frozen` renders a single still (the pause button): sample the current
+    // frame even though the video is paused, rather than dropping to plasma.
+    const drawFrame = (t, frozen = false) => {
+      const pixels = (frozen ? hasVideoFrame() : videoReady()) ? sampleVideo() : null
       // Clear under an identity transform: with a fractional dpr the scaled
       // clearRect would miss part of the backing store and leave trails.
       ctx.save()
@@ -115,7 +123,7 @@ export default function AsciiVideo({
       videoDirty = true
       // Resizing wipes the canvas; when the loop isn't running, repaint the
       // single static frame ourselves.
-      if (paused) drawFrame(0)
+      if (paused) drawFrame(0, true)
     }
 
     // With requestVideoFrameCallback we only resample when the video actually
@@ -222,7 +230,7 @@ export default function AsciiVideo({
     const onPointerDown = () => tryPlay()
 
     if (paused) {
-      drawFrame(0)
+      drawFrame(0, true)
     } else {
       // Don't burn CPU and battery painting a canvas nobody can see: run the
       // loop (and video decode) only while the hero is in the viewport.
