@@ -28,6 +28,61 @@ a {
   color: var(--accent);
 }
 
+/* ---------- Navbar ---------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  /* Translucent + blur so it stays legible over the ASCII hero and plain pages. */
+  background: rgba(10, 15, 12, 0.72);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__brand {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.navbar__links {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  padding: 0;
+}
+
+.navbar__link {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.navbar__brand:hover,
+.navbar__link:hover,
+.navbar__link[aria-current='page'] {
+  color: var(--accent);
+}
+
+.navbar__brand:focus-visible,
+.navbar__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Pages without the full-height hero need to clear the fixed navbar. */
+main.page {
+  padding-top: 6rem;
+}
+
 /* ---------- ASCII video ---------- */
 
 .ascii-video {
@@ -212,6 +267,97 @@ main {
   color: var(--text-dim);
   display: grid;
   gap: 0.5rem;
+}
+
+/* ---------- Wordle ---------- */
+
+.wordle {
+  margin-top: 4rem;
+}
+
+.wordle h2 {
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.wordle h2 span {
+  color: var(--text-dim);
+}
+
+.wordle__empty {
+  color: var(--text-dim);
+}
+
+.wordle__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 1rem;
+}
+
+.wordle-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+}
+
+.wordle-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.wordle-card__header h3 {
+  font-size: 0.8125rem;
+}
+
+.wordle-card__score {
+  color: var(--accent);
+  font-size: 0.8125rem;
+}
+
+.wordle-grid {
+  display: grid;
+  gap: 3px;
+}
+
+.wordle-grid__row {
+  display: flex;
+  gap: 3px;
+}
+
+.wordle-cell {
+  width: 15px;
+  height: 15px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.wordle-cell--correct {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.wordle-cell--present {
+  background: #c9b458;
+  border-color: #c9b458;
+}
+
+.wordle-cell--absent {
+  background: #2a3830;
+  border-color: #2a3830;
+}
+
+.wordle-card__date {
+  color: var(--text-dim);
+  font-size: 0.75rem;
 }
 
 /* ---------- Footer ---------- */

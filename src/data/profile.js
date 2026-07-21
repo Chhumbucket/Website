@@ -57,4 +57,26 @@ export const profile = {
       ]
     }
   ],
+
+  // Wordle completions. Each entry is `{ number, date, grid }`, where `grid`
+  // is the rows of ⬛🟨🟩 emoji straight from the game's Share output; the
+  // score (X/6) is derived in lib/wordle.js. These are placeholders — they'll
+  // be replaced by the auto-posting pipeline (share sheet → gist → fetch).
+  wordle: [
+    {
+      number: 1865,
+      date: '2026-07-20',
+      grid: ['🟨⬛⬛🟨⬛', '🟩🟨⬛⬛⬛', '🟩🟩🟩🟩🟩'],
+    },
+    {
+      number: 1864,
+      date: '2026-07-19',
+      grid: ['⬛🟨⬛⬛⬛', '⬛🟩⬛🟨⬛', '🟨🟩🟩⬛⬛', '🟩🟩🟩🟩🟩'],
+    },
+    {
+      number: 1863,
+      date: '2026-07-18',
+      grid: ['⬛⬛🟨⬛⬛', '🟨⬛⬛🟩⬛', '⬛🟩🟨🟩⬛', '🟩🟩⬛🟩🟩', '🟩🟩🟩🟩🟩'],
+    },
+  ],
 }
