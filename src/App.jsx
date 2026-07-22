@@ -22,9 +22,9 @@ export default function App() {
           <main>
             <Experience />
           </main>
+          <Footer />
         </>
       )}
-      <Footer />
     </>
   )
 }
