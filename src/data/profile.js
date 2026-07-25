@@ -4,6 +4,7 @@ export const profile = {
   title: 'Backend Engineer',
   company: 'Finix',
   tagline: 'Building dispute processing systems on the Disputes team at Finix.',
+  education: 'B.S. EECS · UC Berkeley',
   email: 'dylchhum@berkeley.edu',
 
   // Default hero background (visitors can switch modes with the on-page

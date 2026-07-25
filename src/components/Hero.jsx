@@ -55,6 +55,9 @@ export default function Hero() {
           <p className="hero__title">
             {profile.title} @ {profile.company}
           </p>
+          {profile.education && (
+            <p className="hero__edu">{profile.education}</p>
+          )}
           <p className="hero__tagline">{profile.tagline}</p>
           <nav className="hero__links" aria-label="Contact links">
             {profile.links.map((link) => (

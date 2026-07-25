@@ -196,6 +196,12 @@ main.page {
   margin-top: 0.5rem;
 }
 
+.hero__edu {
+  color: var(--text-dim);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
 .hero__tagline {
   color: var(--text-dim);
   margin-top: 1rem;
