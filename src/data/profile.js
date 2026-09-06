@@ -1,9 +1,8 @@
-// Single source of truth for the site's content — edit this file, not the components.
 export const profile = {
   name: 'Dylan Chhum',
   title: 'Backend Engineer',
   company: 'Finix',
-  tagline: 'Building dispute processing systems on the Disputes team at Finix.',
+  tagline: 'I build backend systems for payment disputes. Previously, I worked on voice AI, campus apps, and computer vision for bioprinting.',
   education: 'B.S. EECS · UC Berkeley',
   email: 'dylchhum@berkeley.edu',
 
@@ -22,41 +21,64 @@ export const profile = {
 
   links: [
     { label: 'GitHub', href: 'https://github.com/chhumbucket' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/chhum' },
     { label: 'Email', href: 'mailto:dylchhum@berkeley.edu' },
   ],
 
   experience: [
     {
       company: 'Finix',
-      role: 'Backend Engineer',
+      role: 'Software Engineer',
       team: 'Disputes',
-      period: '2026 — Present', 
+      period: 'Apr 2026 — Present',
       bullets: [
-        'Build and maintain backend services powering the dispute lifecycle — intake, evidence submission, and resolution.',
-        'Work across processor integrations to normalize dispute data into a single internal model.',
+        'Built page validation for Mastercard Mastercom submissions, preventing unnecessary billable pages and reducing network fees by approximately $60K per month.',
+        'Design and implement a timeline API that brings card-network and issuer notes into one chronological dispute history.',
+        'Removed deprecated code paths and automated manual steps in the CyberSource dispute lifecycle.',
       ],
     },
     {
-      company: 'Berkeley Mobile',
-      role: 'iOS Engineer',
-      period: '2024 — 2026', 
+      company: 'Tokk AI',
+      role: 'Full-Stack Engineer Intern',
+      period: 'May — Aug 2025',
       bullets: [
-        'Builted a webscrapper that kept track of the gym occupancy.',
-        'Worked on improving a webscrapper that allowed for ingredients in cafeteria food.',
-        'Designed a page that kept track of macros based on dining hall meals.',
-      ]
+        'Architected an MVVM-based iOS app and documented its design for a three-person engineering team.',
+        'Connected the iOS client to AWS services over WebSockets with sub-100ms latency.',
+        'Built real-time audio streaming with AVFoundation and designed flows for voice-based AI interaction.',
+      ],
     },
     {
-      company: 'Tokk AI', 
-      role: 'iOS Engineer Intern',
-      period: '2025 — 2026',
+      company: 'ATP-Bio',
+      role: 'Researching Engineer',
+      period: 'May 2023 — Oct 2024',
       bullets: [
-        'Designed the system that connects platform to the app',
-        'Created voice integration system in order to communicate with the AI',
-        'Added a chatbot to the app for customers',
-        'Integrated native calendar and reminders into app and platform',
-      ]
-    }
+        'Built a Python and OpenCV system processing 30 frames per second for precision 3D bioprinting.',
+        'Reduced cryoprinting material waste by 40% with automated visual tracking and feedback.',
+        'Developed microscopic motion tracking and C++ / Arduino modules for device control and data acquisition.',
+      ],
+    },
+  ],
+
+  projects: [
+    {
+      name: 'Berkeley Mobile',
+      role: 'iOS Developer',
+      stack: 'Swift · SwiftUI · Firebase · REST APIs',
+      description: 'Campus resources for 20,000+ UC Berkeley students, built with a 15-person team.',
+      bullets: [
+        'Integrated real-time gym capacity, dining menus, and course schedules using Swift Concurrency.',
+        'Migrated five UIKit screens to SwiftUI while maintaining iOS 14+ compatibility.',
+      ],
+    },
+    {
+      name: 'Dog Shelter Matching Platform',
+      stack: 'React · FastAPI · Python · Google Gemini',
+      description: 'A web app that connects dog owners with shelters through video-based behavioral analysis.',
+      bullets: [
+        'Built a FastAPI pipeline for concurrent video uploads and Gemini-powered behavior profiles.',
+        'Implemented the React user flows and deployed the application on Vercel.',
+      ],
+    },
   ],
 
   // Wordle completions. Each entry is `{ number, date, grid }`, where `grid`
