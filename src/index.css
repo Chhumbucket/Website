@@ -121,7 +121,9 @@ main.page {
   position: absolute;
   bottom: 0.75rem;
   left: 1rem;
+  right: 1rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -152,6 +154,8 @@ main.page {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
+  padding: 6rem 1rem 7rem;
   display: flex;
   align-items: center;
 }
@@ -209,8 +213,20 @@ main.page {
 
 .hero__links {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 1.5rem;
+}
+
+.hero__work-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-underline-offset: 0.25em;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 /* ---------- Experience ---------- */
@@ -221,10 +237,16 @@ main {
   padding: 4rem 2rem;
 }
 
-.experience h2 {
+.experience h2,
+.projects h2 {
   font-size: 1.25rem;
   color: var(--accent);
   margin-bottom: 2rem;
+}
+
+.experience,
+.projects {
+  scroll-margin-top: 5rem;
 }
 
 .experience h2 span {
@@ -239,9 +261,8 @@ main {
 }
 
 .job {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
 }
 
 .job__header {
@@ -273,6 +294,47 @@ main {
   color: var(--text-dim);
   display: grid;
   gap: 0.5rem;
+}
+
+.projects {
+  margin-top: 4rem;
+}
+
+.projects__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+}
+
+.project {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.project h3 {
+  font-size: 1rem;
+}
+
+.project__role,
+.project__stack {
+  color: var(--accent);
+  font-size: 0.8125rem;
+}
+
+.project__description,
+.project__stack {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 420px) {
+  .hero__content {
+    padding: 2.5rem 1.25rem 1.5rem;
+  }
+
+  main {
+    padding-inline: 1.25rem;
+  }
 }
 
 /* ---------- Wordle ---------- */

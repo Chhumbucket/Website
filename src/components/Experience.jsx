@@ -2,10 +2,8 @@ import { profile } from '../data/profile'
 
 export default function Experience() {
   return (
-    <section className="experience" id="experience">
-      <h2>
-        <span aria-hidden="true">## </span>Experience
-      </h2>
+    <section className="experience" id="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
       {/* role="list" restores list semantics that Safari/VoiceOver drops
           when list-style is none */}
       <ol className="experience__list" role="list">

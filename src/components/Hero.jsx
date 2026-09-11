@@ -66,6 +66,7 @@ export default function Hero() {
               </a>
             ))}
           </nav>
+          <a className="hero__work-link" href="#experience">View my work ↓</a>
         </div>
       </div>
     </header>
